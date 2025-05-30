@@ -1,0 +1,51 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "rimraf dist && tsc",
+    "start": "npm run build && node dist/index.js",
+    "start:production": "cross-env NODE_ENV=production npm run build && node dist/index.js",
+    "dev": "concurrently \"tsc -w\" \"nodemon --exec ts-node src/index.ts\"",
+    "dev:production": "cross-env NODE_ENV=production concurrently \"tsc -w\" \"nodemon --exec ts-node src/index.ts\"",
+    "migrate:generate": "npx drizzle-kit generate --config=drizzle.config.ts --name ",
+    "migrate:generate:production": "cross-env NODE_ENV=production npx drizzle-kit generate --config=drizzle.config.ts --name ",
+    "migrate:up": "npx drizzle-kit migrate --config=drizzle.config.ts",
+    "migrate:up:production": "cross-env NODE_ENV=production npx drizzle-kit migrate --config=drizzle.config.ts",
+    "migrate:push": "npx drizzle-kit push --config=drizzle.config.ts",
+    "migrate:push:production": "cross-env NODE_ENV=production npx drizzle-kit push --config=drizzle.config.ts "
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "axios": "^1.9.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "drizzle-orm": "^0.44.0",
+    "express": "^5.1.0",
+    "helmet": "^8.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "morgan": "^1.10.0",
+    "multer": "^2.0.0",
+    "postgres": "^3.4.7",
+    "uuid": "^11.1.0"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.18",
+    "@types/express": "^5.0.2",
+    "@types/jsonwebtoken": "^9.0.9",
+    "@types/morgan": "^1.9.9",
+    "@types/multer": "^1.4.12",
+    "@types/node": "^22.15.24",
+    "@types/uuid": "^10.0.0",
+    "concurrently": "^9.1.2",
+    "cross-env": "^7.0.3",
+    "drizzle-kit": "^0.31.1",
+    "nodemon": "^3.1.10",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  }
+}
