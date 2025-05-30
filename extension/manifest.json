@@ -1,0 +1,11 @@
+{
+  "name": "time-tracker-Extension",
+  "description": "A tool to upgrade your productivity.",
+  "version": "1.0",
+  "manifest_version": 3,
+  "action": {
+    "default_popup": "tracker/index.html",
+    "default_icon": "assets/hello_extensions.png"
+  },
+  "permissions": ["storage", "activeTab"]
+}
