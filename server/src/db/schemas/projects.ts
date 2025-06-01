@@ -19,7 +19,7 @@ export const projects = pgTable("projects", {
   creatorId: uuid("creator_id")
     .notNull()
     .references(() => users.id, { onDelete: "cascade" }),
-});
+}).enableRLS();
 
 export type InsertProject = typeof projects.$inferInsert;
 export type SelectProject = typeof projects.$inferSelect;

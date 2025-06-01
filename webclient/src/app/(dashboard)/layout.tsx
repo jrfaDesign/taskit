@@ -1,18 +1,28 @@
-"use client";
-
 import React from "react";
 import type { ReactNode } from "react";
 
 import { ThemeToggle } from "@/components/ThemeToggler";
-import { APP_NAME, APP_VERSION } from "@/lib/utils";
 
-import { BASE_API } from "@/lib/variables";
+import { APP_NAME, APP_VERSION, BASE_API } from "@/lib/variables";
+import { Button } from "@/components/ui/button";
+import { supabaseSignout } from "./actions";
+import { getUser } from "@/lib/supabase/server";
+import { redirect } from "next/navigation";
 
-const DashboardLayout = ({ children }: { children: ReactNode }) => {
+const DashboardLayout = async ({ children }: { children: ReactNode }) => {
+  const user = await getUser();
+
+  if (!user) {
+    redirect("/");
+  }
+
   return (
     <div className="flex flex-col min-h-screen max-h-screen overflow-hidden">
-      <header className="bg-background/95 border-b px-6 py-4">
+      <header className="bg-background/95 border-b px-6 py-4 flex items-center justify-between">
         <h1 className="text-xl font-semibold">Dashboard -{BASE_API}</h1>
+        <Button onClick={supabaseSignout} variant={"outline"}>
+          Sign out
+        </Button>
       </header>
 
       <main className="flex-1 flex flex-col p-4 overflow-hidden">

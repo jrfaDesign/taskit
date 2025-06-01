@@ -1,17 +1,16 @@
-import React from "react";
-
-import { login, signup } from "./actions";
+import LoginForm from "./_components/LoginForm";
+import SocialLogin from "./_components/SocialLogin";
 
 const LoginPage = () => {
   return (
-    <form>
-      <label htmlFor="email">Email:</label>
-      <input id="email" name="email" type="email" required />
-      <label htmlFor="password">Password:</label>
-      <input id="password" name="password" type="password" required />
-      <button formAction={login}>Log in</button>
-      <button formAction={signup}>Sign up</button>
-    </form>
+    <div>
+      <div className="mb-4">
+        <h5 className="text-3xl font-bold">Hi, Welcome! 👋</h5>
+      </div>
+      <SocialLogin />
+
+      <LoginForm />
+    </div>
   );
 };
 

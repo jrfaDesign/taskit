@@ -26,5 +26,6 @@ export type TaskProps = {
 export type GroupedProject = {
   projectId: string;
   projectName: string;
+  projectColor: string;
   tasks: TaskProps[];
 };

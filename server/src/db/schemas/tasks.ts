@@ -36,7 +36,7 @@ export const tasks = pgTable("tasks", {
   projectId: uuid("project_id")
     .notNull()
     .references(() => projects.uuid, { onDelete: "cascade" }),
-});
+}).enableRLS();
 
 export type InsertTask = typeof tasks.$inferInsert;
 export type SelectTask = typeof tasks.$inferSelect;

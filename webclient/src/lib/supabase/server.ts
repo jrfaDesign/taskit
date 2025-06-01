@@ -27,3 +27,15 @@ export async function createClient() {
     }
   );
 }
+
+export const getUser = async () => {
+  const supabase = await createClient();
+  const { data } = await supabase.auth.getUser();
+  return data.user;
+};
+
+export const signOut = async () => {
+  const supabase = await createClient();
+  const result = await supabase.auth.signOut();
+  return result;
+};

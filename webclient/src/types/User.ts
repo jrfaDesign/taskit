@@ -1,6 +1,3 @@
-export type UserProps = {
-  id: string;
-  name: string;
-  email: string;
-  created_at: string;
-};
+import { User } from "@supabase/supabase-js";
+
+export type UserProps = User | null;

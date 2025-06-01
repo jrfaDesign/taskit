@@ -8,6 +8,34 @@
       "when": 1748537267659,
       "tag": "0000_users_tasks_projects",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1748615464688,
+      "tag": "0001_update_user_schema",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1748624137874,
+      "tag": "0002_update_users",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1748769970032,
+      "tag": "0003_update_users",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1748770156191,
+      "tag": "0004_update_users",
+      "breakpoints": true
     }
   ]
 }

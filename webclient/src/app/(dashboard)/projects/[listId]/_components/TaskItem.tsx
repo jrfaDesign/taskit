@@ -36,7 +36,10 @@ const TaskItem = ({ task }: TaskItemProps) => {
         <p className={`text-sm font-medium ${!!completedAt && "line-through"}`}>
           {title}
         </p>
-        <div className="flex items-center justify-center h-5 w-5 text-xs bg-red-500 text-white font-bold rounded">
+        <div
+          style={{ backgroundColor: task.project.nameColor }}
+          className="flex items-center justify-center h-5 w-5 text-xs   text-white font-bold rounded"
+        >
           {project.name.charAt(0).toUpperCase()}
         </div>
       </div>
