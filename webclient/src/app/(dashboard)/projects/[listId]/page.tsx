@@ -1,32 +1,44 @@
+"use client";
+
+import { useGetProjectByID } from "@/queries/prejectId";
 import TaskColumn from "./_components/TaskColumn";
-import { ColumnsId, groupTasksByColumn, mockTasks } from "./utils";
 
-interface Params {
-  params: {
-    listId: string | "all";
-  };
-}
+import { ColumnsId, ProjectIds } from "@/types/Project";
+import { useParams } from "next/navigation";
 
-export default function TasksByIdPage({}: Params) {
-  const columns = groupTasksByColumn(mockTasks);
+type ProjectParams = {
+  listId: ProjectIds;
+};
+export default function TasksByIdPage() {
+  const { listId } = useParams() as ProjectParams;
+  const {
+    data: selectedProject,
+    isLoading,
+    isError,
+  } = useGetProjectByID(listId);
+
+  if (isLoading) return <p> loading tasks.</p>;
+  if (isError || !selectedProject) return <p>Error loading tasks.</p>;
 
   return (
-    <div className="flex flex-1 space-x-4 overflow-y-auto pb-2">
-      {Object.entries(columns)
-        .sort(
-          ([a], [b]) =>
-            ORDER.indexOf(a as ColumnsId) - ORDER.indexOf(b as ColumnsId)
-        )
-        .map(([key, col]) => (
+    <div className="flex flex-1 space-x-4 overflow-y-auto pb-2 lg:px-20">
+      {Object.entries(selectedProject.columns).map(([key, col]) => {
+        return (
           <TaskColumn
             key={key}
             columnId={key as ColumnsId}
-            title={col.title}
-            tasks={col.tasks}
+            title={COLUMN_ID_TO_NAME[key as ColumnsId]}
+            tasks={col}
           />
-        ))}
+        );
+      })}
     </div>
   );
 }
 
-const ORDER: ColumnsId[] = ["backlog", "this-week", "overdue", "today", "done"];
+const COLUMN_ID_TO_NAME: { [key in ColumnsId]: string } = {
+  backlog: "Backlog",
+  "this-week": "This Week",
+  today: "Today",
+  done: "Done",
+};

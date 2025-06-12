@@ -1,12 +1,12 @@
-import { GroupedProject } from "@/types/Tasks";
+import { ProjectProps } from "@/types/Project";
 import React from "react";
 
 type Props = {
-  project: GroupedProject;
+  project: ProjectProps;
   allProjects: ProjectNameIconProps[] | null;
 };
 
-type ProjectNameIconProps = {
+export type ProjectNameIconProps = {
   name: string;
   color: string;
 };
@@ -19,13 +19,10 @@ const ProjectsCard = ({ project, allProjects }: Props) => {
         {allProjects ? (
           <AllProjectsIcon allProjects={allProjects} />
         ) : (
-          <ProjectNameIcon
-            color={project.projectColor}
-            name={project.projectName}
-          />
+          <ProjectNameIcon color={project.nameColor} name={project.name} />
         )}
 
-        <div className="font-medium">{project.projectName}</div>
+        <div className="font-medium">{project.name}</div>
       </div>
       <div className="space-y-2 flex-1">
         {project.tasks.slice(0, 5).map((task, index) => (
@@ -37,6 +34,7 @@ const ProjectsCard = ({ project, allProjects }: Props) => {
             {task.title}
           </div>
         ))}
+        {project.tasks.length === 0 && <div>No tasks</div>}
       </div>
       <div className="text-muted-foreground text-sm">
         {project.tasks.filter(task => !task.completedAt).length} pending tasks
@@ -64,7 +62,7 @@ const AllProjectsIcon = ({
   allProjects: ProjectNameIconProps[];
 }) => {
   const maxVisible = 4;
-  const visibleProjects = allProjects.slice(0, maxVisible);
+  const visibleProjects = allProjects.slice(1, maxVisible);
   const remainingCount = allProjects.length - maxVisible;
 
   return (

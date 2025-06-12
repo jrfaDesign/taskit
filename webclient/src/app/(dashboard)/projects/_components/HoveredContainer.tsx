@@ -2,12 +2,12 @@ import React from "react";
 
 import { Button } from "@/components/ui/button";
 import { AnimatePresence, motion } from "framer-motion";
-import { GroupedProject } from "@/types/Tasks";
+import { ProjectProps } from "@/types/Project";
 const HoveredContainer = ({
   project,
   isHovered,
 }: {
-  project: GroupedProject;
+  project: ProjectProps;
   isHovered: boolean;
 }) => {
   return (
@@ -28,7 +28,7 @@ const HoveredContainer = ({
             transition={{ duration: 0.2 }}
             className="flex flex-col items-center space-y-4"
           >
-            <h6 className="font-medium">{project.projectName}</h6>
+            <h6 className="font-medium">{project.name}</h6>
             <Button>See more</Button>
           </motion.div>
         </motion.div>

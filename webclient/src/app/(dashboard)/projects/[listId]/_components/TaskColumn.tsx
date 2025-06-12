@@ -1,11 +1,14 @@
 import React from "react";
-import TaskItem from "./TaskItem";
-import { TaskProps } from "@/types/Tasks";
-import { ColumnsId, formatSecondsToReadable } from "../utils";
+import classNames from "classnames";
 
+import TaskItem from "./TaskItem";
 import { Progress } from "@/components/ui/progress";
 
-import classNames from "classnames";
+import { TaskProps } from "@/types/Tasks";
+import { ColumnsId } from "@/types/Project";
+
+import { formatSecondsToReadable } from "../utils";
+import { CreateNewsTaskBtn } from "@/app/(dashboard)/_components/CreateNewTask";
 
 type TaskColumnProps = {
   columnId: ColumnsId;
@@ -27,7 +30,6 @@ const TaskColumn = ({ columnId, title, tasks }: TaskColumnProps) => {
         "flex flex-1 border-2 p-2 py-2 flex-col min-w-[320px] rounded-xl bg-card shadow",
         {
           "border-primary": columnId === "today",
-          "border-destructive": columnId === "overdue",
         }
       )}
     >
@@ -53,9 +55,11 @@ const TaskColumn = ({ columnId, title, tasks }: TaskColumnProps) => {
         ))}
       </div>
 
-      <button className="mt-4 w-full text-sm text-center text-blue-500 hover:underline">
-        + Add task
-      </button>
+      <CreateNewsTaskBtn
+        variant={"link"}
+        withIcon
+        className="text-[var(--text-secondary)]"
+      />
     </div>
   );
 };

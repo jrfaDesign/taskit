@@ -1,16 +1,18 @@
 "use client";
 
-import StoreProvider from "@/state/redux";
-
 import {
   ThemeProvider as NextThemesProvider,
   ThemeProviderProps,
 } from "next-themes";
 
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+const queryClient = new QueryClient();
+
 const Providers = ({ children }: { children: React.ReactNode }) => {
   return (
     <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-      <StoreProvider>{children}</StoreProvider>
+      <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
     </ThemeProvider>
   );
 };
